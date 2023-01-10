@@ -7,21 +7,22 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { ProductListComponent } from "./pages/product-list/product-list.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+import { UiModule } from "@bluebits/ui";
 
 const ROUTES: Routes = [
-    {
-        path: "",
-        component: HomePageComponent
-    },
-    {
-        path: "products",
-        component: ProductListComponent
-    }
+  {
+    path: "",
+    component: HomePageComponent
+  },
+  {
+    path: "products",
+    component: ProductListComponent
+  }
 ];
 @NgModule({
-    declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent],
-    imports: [BrowserModule, RouterModule.forRoot(ROUTES)],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent],
+  imports: [BrowserModule, RouterModule.forRoot(ROUTES), UiModule],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
