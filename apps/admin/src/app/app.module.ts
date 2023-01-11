@@ -1,17 +1,19 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoriesService } from '@bluebits/products';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
 
 import { AppComponent } from './app.component';
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { CardModule } from 'primeng/card';
-import { ToolbarModule } from 'primeng/toolbar';
-import { ButtonModule } from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
-import {TableModule} from 'primeng/table';
 
 const UX_MODULE = [
   CardModule,
@@ -39,8 +41,8 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
-  imports: [BrowserModule, ...UX_MODULE, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
-  providers: [],
+  imports: [BrowserModule, ...UX_MODULE, HttpClientModule, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
+  providers: [CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
