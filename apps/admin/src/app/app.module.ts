@@ -1,31 +1,46 @@
-import { Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
+import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import {TableModule} from 'primeng/table';
 
+const UX_MODULE = [
+  CardModule,
+  ToolbarModule,
+  ButtonModule,
+  RippleModule,
+  TableModule
+]
 const ROUTES: Routes = [
   {
-    path:'',
+    path: "",
     component: ShellComponent,
     children: [
       {
-        path:'dashboard',
+        path: "dashboard",
         component: DashboardComponent
+      },
+      {
+        path: "categories",
+        component: CategoriesListComponent
       }
     ]
   }
-]
+];
 
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent],
-    imports: [BrowserModule, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
+  imports: [BrowserModule, ...UX_MODULE, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
