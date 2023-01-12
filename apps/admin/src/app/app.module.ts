@@ -5,9 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesService } from '@bluebits/products';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
@@ -21,7 +22,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
-const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, RippleModule, TableModule, InputTextModule, ToastModule];
+
+const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, RippleModule, TableModule, InputTextModule, ToastModule, ConfirmDialogModule];
 const ROUTES: Routes = [
   {
     path: "",
@@ -46,7 +48,7 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent],
   imports: [BrowserModule, BrowserAnimationsModule, ...UX_MODULE, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
-  providers: [CategoriesService, MessageService],
+  providers: [CategoriesService, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -57,4 +57,5 @@ export class CategoriesFormComponent implements OnInit {
   get categoryForm() {
     return this.form.controls
   }
+
 }
