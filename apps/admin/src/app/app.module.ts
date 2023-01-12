@@ -1,27 +1,27 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesService } from '@bluebits/products';
+import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 
 import { AppComponent } from './app.component';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
-const UX_MODULE = [
-  CardModule,
-  ToolbarModule,
-  ButtonModule,
-  RippleModule,
-  TableModule
-]
+const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, RippleModule, TableModule, InputTextModule, ToastModule];
 const ROUTES: Routes = [
   {
     path: "",
@@ -34,15 +34,19 @@ const ROUTES: Routes = [
       {
         path: "categories",
         component: CategoriesListComponent
+      },
+      {
+        path: "categories/form",
+        component: CategoriesFormComponent
       }
     ]
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
-  imports: [BrowserModule, ...UX_MODULE, HttpClientModule, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
-  providers: [CategoriesService],
+  declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, ...UX_MODULE, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })],
+  providers: [CategoriesService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

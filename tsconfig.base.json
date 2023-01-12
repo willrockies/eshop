@@ -14,6 +14,7 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
+        "strictPropertyInitialization": false,
         "paths": {
             "@bluebits/orders": ["libs/orders/src/index.ts"],
             "@bluebits/products": ["libs/products/src/index.ts"],
