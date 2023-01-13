@@ -14,6 +14,7 @@ import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 import { AppComponent } from './app.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
@@ -23,7 +24,7 @@ import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 
-const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, RippleModule, TableModule, InputTextModule, ToastModule, ConfirmDialogModule];
+const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, RippleModule, TableModule, InputTextModule, ToastModule, ConfirmDialogModule, ColorPickerModule];
 const ROUTES: Routes = [
   {
     path: "",
