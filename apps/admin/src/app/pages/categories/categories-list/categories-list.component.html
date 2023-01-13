@@ -31,7 +31,13 @@
             <tr>
               <td>{{category.name}}</td>
               <td><i class="pi" [ngClass]="'pi-' + category.icon"></i></td>
-              <td>{{category.color}}</td>
+              <td>
+                <!-- <i class="pi pi-circle-on" [ngStyle]="{ color: category.color }"></i> -->
+                <div style="display: flex; flex-direction: row; width: 25px; height: 25px; "
+                  [ngStyle]="{background: category.color}">
+                </div>
+                <!-- {{category.color}} -->
+              </td>
               <td>
                 <p-button (click)="deleteCategory(category.id)" styleClass="p-button-danger mr-2"
                   icon="pi pi-trash"></p-button>

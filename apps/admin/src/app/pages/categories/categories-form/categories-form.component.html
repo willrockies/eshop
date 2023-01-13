@@ -8,8 +8,8 @@
           <div class="p-toolbar-group-rigth">
             <p-button [label]="editMode ? 'Update' : 'Create'" icon="pi pi-plus" styleClass="p-button-primary mr-4"
               (click)="onSubmit()"></p-button>
-            <p-button label="Cancel" icon="pi pi-arrow-circle-left" styleClass="p-button-secondary"
-              routerLink="form"></p-button>
+            <p-button label="Cancel"  icon="pi pi-arrow-circle-left" styleClass="p-button-secondary"
+              (click)="onCancel()"></p-button>
             <!-- <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-warning"></button> -->
           </div>
         </p-toolbar>

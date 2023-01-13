@@ -6,10 +6,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: "admin-categories-list",
   templateUrl: "./categories-list.component.html",
-  styles: []
+
 })
 export class CategoriesListComponent implements OnInit {
   categories: Category[] = [];
+
 
   constructor(
     private categoriesService: CategoriesService,
@@ -18,6 +19,7 @@ export class CategoriesListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    
     this._getCategories();
   }
 
@@ -47,7 +49,6 @@ export class CategoriesListComponent implements OnInit {
             }
           )
       },
-      reject: (type: any) => { }
     });
   }
 
@@ -58,6 +59,7 @@ export class CategoriesListComponent implements OnInit {
   private _getCategories() {
     this.categoriesService.getCategories().subscribe(cats => {
       this.categories = cats;
+
     })
   }
 

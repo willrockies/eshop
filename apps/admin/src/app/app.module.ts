@@ -17,8 +17,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ColorPickerModule } from 'primeng/colorpicker';
 
 import { AppComponent } from './app.component';
-import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
-import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
+import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
