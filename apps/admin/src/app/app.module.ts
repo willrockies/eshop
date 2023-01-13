@@ -15,6 +15,9 @@ import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { ColorPickerModule } from "primeng/colorpicker";
+import { InputNumberModule } from 'primeng/inputnumber';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 import { AppComponent } from "./app.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
@@ -25,7 +28,20 @@ import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { ProductsListComponent } from "./pages/products/products-list/products-list.component";
 import { ProductsFormComponent } from "./pages/products/products-form/products-form.component";
 
-const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, RippleModule, TableModule, InputTextModule, ToastModule, ConfirmDialogModule, ColorPickerModule];
+const UX_MODULE = [
+  CardModule,
+  ToolbarModule,
+  ButtonModule,
+  RippleModule,
+  TableModule,
+  InputTextModule,
+  ToastModule,
+  ConfirmDialogModule,
+  ColorPickerModule,
+  InputNumberModule,
+  InputTextareaModule,
+  InputSwitchModule
+];
 const ROUTES: Routes = [
   {
     path: "",

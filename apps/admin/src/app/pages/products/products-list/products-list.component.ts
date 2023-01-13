@@ -1,5 +1,5 @@
-import { Product } from './../../../../../../../libs/products/src/lib/models/product';
-import { ProductService } from './../../../../../../../libs/products/src/lib/services/products.service';
+import { Product, ProductService } from '@bluebits/products';
+
 import { Component, OnInit } from "@angular/core";
 
 @Component({

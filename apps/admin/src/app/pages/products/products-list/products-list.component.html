@@ -40,6 +40,7 @@
                 <p-sortIcon field="created"></p-sortIcon>
               </th>
               <th></th>
+             
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-product>
@@ -50,7 +51,7 @@
               <td>{{product.countInStock}}</td>
               <td>{{product.category?.name}}</td>
               <td>{{product.dateCreated | date:'short'}}</td>
-              <td><i class="pi" [ngClass]="'pi-' + product.icon"></i></td>
+              <!-- <td><i class="pi" [ngClass]="'pi-' + product.icon"></i></td> -->
               <td>
                 <p-button (click)="deleteProduct()" styleClass="p-button-danger mr-2" icon="pi pi-trash"></p-button>
                 <p-button (click)="updateProduct()" styleClass="p-button-success" icon="pi pi-pencil"></p-button>
