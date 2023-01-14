@@ -85,7 +85,13 @@
               </div>
               <p-editor formControlName="richDescription" [style]="{'height':'320px'}"></p-editor>
             </div>
-
+            <div class="field col-12">
+              <label for="name">Main Image</label>
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+              <div class="p-col-2 mt-2 pl-0">
+                <img style="width: 100px;" [src]="imageDisplay" alt="" >
+              </div>
+            </div>
           </div>
         </form>
       </div>
