@@ -18,6 +18,7 @@ import { ColorPickerModule } from "primeng/colorpicker";
 import { InputNumberModule } from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {DropdownModule} from 'primeng/dropdown';
 
 import { AppComponent } from "./app.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
@@ -40,7 +41,9 @@ const UX_MODULE = [
   ColorPickerModule,
   InputNumberModule,
   InputTextareaModule,
-  InputSwitchModule
+  InputSwitchModule,
+  DropdownModule
+
 ];
 const ROUTES: Routes = [
   {
@@ -88,7 +91,8 @@ const ROUTES: Routes = [
     CategoriesListComponent,
     CategoriesFormComponent,
     ProductsListComponent,
-    ProductsFormComponent
+    ProductsFormComponent,
+
   ],
   imports: [
     BrowserModule,
