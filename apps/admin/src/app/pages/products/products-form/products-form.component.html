@@ -56,18 +56,9 @@
             </div>
             <div class="field col-4">
               <label for="category">Category</label>
-              <p-dropdown
-                [options]="categories"
-                formControlName="category"
-                optionLabel="name"
-                optionValue="id"
-                [filter]="true"
-                filterBy="name"
-                [showClear]="true"
-                placeholder="Select a Category"></p-dropdown>
-              <small
-                *ngIf="productForm['category'].invalid && isSubmitted"
-                class="p-error">Category is required
+              <p-dropdown [options]="categories" formControlName="category" optionLabel="name" optionValue="id"
+                [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Category"></p-dropdown>
+              <small *ngIf="productForm['category'].invalid && isSubmitted" class="p-error">Category is required
               </small>
             </div>
             <div class="field col-4">
@@ -88,6 +79,13 @@
               <small *ngIf="productForm['description'].invalid && isSubmitted" class="p-error">Price is required</small>
 
             </div>
+            <div class="field col-12">
+              <div class="mb-2">
+                <label for="richDescription">Product Details</label>
+              </div>
+              <p-editor formControlName="richDescription" [style]="{'height':'320px'}"></p-editor>
+            </div>
+
           </div>
         </form>
       </div>

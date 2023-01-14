@@ -19,6 +19,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {DropdownModule} from 'primeng/dropdown';
+import {EditorModule} from 'primeng/editor';
+
 
 import { AppComponent } from "./app.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
@@ -42,7 +44,8 @@ const UX_MODULE = [
   InputNumberModule,
   InputTextareaModule,
   InputSwitchModule,
-  DropdownModule
+  DropdownModule,
+  EditorModule
 
 ];
 const ROUTES: Routes = [
