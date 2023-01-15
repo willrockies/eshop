@@ -15,12 +15,11 @@ import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { ColorPickerModule } from "primeng/colorpicker";
-import { InputNumberModule } from 'primeng/inputnumber';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {InputSwitchModule} from 'primeng/inputswitch';
-import {DropdownModule} from 'primeng/dropdown';
-import {EditorModule} from 'primeng/editor';
-
+import { InputNumberModule } from "primeng/inputnumber";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { InputSwitchModule } from "primeng/inputswitch";
+import { DropdownModule } from "primeng/dropdown";
+import { EditorModule } from "primeng/editor";
 
 import { AppComponent } from "./app.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
@@ -30,6 +29,8 @@ import { ShellComponent } from "./shared/shell/shell.component";
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { ProductsListComponent } from "./pages/products/products-list/products-list.component";
 import { ProductsFormComponent } from "./pages/products/products-form/products-form.component";
+import { UsersFormComponent } from "./pages/users/users-form/users-form.component";
+import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 
 const UX_MODULE = [
   CardModule,
@@ -46,7 +47,6 @@ const UX_MODULE = [
   InputSwitchModule,
   DropdownModule,
   EditorModule
-
 ];
 const ROUTES: Routes = [
   {
@@ -80,6 +80,18 @@ const ROUTES: Routes = [
       {
         path: "products/form/:id",
         component: ProductsFormComponent
+      },
+      {
+        path: "users",
+        component: UsersListComponent
+      },
+      {
+        path: "users/form",
+        component: UsersFormComponent
+      },
+      {
+        path: "users/form/:id",
+        component: UsersFormComponent
       }
     ]
   }
@@ -95,7 +107,8 @@ const ROUTES: Routes = [
     CategoriesFormComponent,
     ProductsListComponent,
     ProductsFormComponent,
-
+    UsersFormComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

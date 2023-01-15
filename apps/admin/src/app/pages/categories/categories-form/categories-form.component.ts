@@ -56,7 +56,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   onCancel() {
-    this.location.back()
+    this.location.back();
   }
 
   private _addCategory(category: Category) {
@@ -68,7 +68,7 @@ export class CategoriesFormComponent implements OnInit {
       });
       timer(2000).toPromise().then(done => {
         this.location.back()
-      })
+      });
 
     }, () => {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category was not created' });
@@ -85,12 +85,12 @@ export class CategoriesFormComponent implements OnInit {
       });
       timer(2000).toPromise().then(() => {
         this.location.back()
-      })
+      });
 
     }, () => {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category was not updated' });
 
-    })
+    });
   }
 
   private _checkEditMode() {
@@ -103,13 +103,13 @@ export class CategoriesFormComponent implements OnInit {
           this.categoryForm["icon"].setValue(category.icon);
           this.categoryForm["color"].setValue(category.color);
 
-        })
+        });
       }
     })
   }
 
   get categoryForm() {
-    return this.form.controls
+    return this.form.controls;
   }
 
 }

@@ -15,7 +15,13 @@
     </div>
     <div class="grid">
       <div class="col-12">
-        <p-table [value]="products" styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '50rem'}">
+        <p-table
+          [value]="products"
+          styleClass="p-datatable-gridlines"
+          [paginator]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true" 
+          [tableStyle]="{'min-width': '50rem'}">
           <ng-template pTemplate="header">
             <tr>
               <th pSortableColumn="name">
@@ -40,7 +46,7 @@
                 <p-sortIcon field="created"></p-sortIcon>
               </th>
               <th></th>
-             
+
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-product>
@@ -53,8 +59,8 @@
               <td>{{product.dateCreated | date:'short'}}</td>
               <!-- <td><i class="pi" [ngClass]="'pi-' + product.icon"></i></td> -->
               <td>
-                <p-button (click)="deleteProduct()" styleClass="p-button-danger mr-2" icon="pi pi-trash"></p-button>
-                <p-button (click)="updateProduct()" styleClass="p-button-success" icon="pi pi-pencil"></p-button>
+                <p-button (click)="deleteProduct(product.id)" styleClass="p-button-danger mr-2" icon="pi pi-trash"></p-button>
+                <p-button (click)="updateProduct(product.id)" styleClass="p-button-success" icon="pi pi-pencil"></p-button>
               </td>
 
 

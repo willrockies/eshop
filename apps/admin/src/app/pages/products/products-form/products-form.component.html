@@ -52,7 +52,7 @@
               </div>
               <p-inputNumber formControlName="countInStock" mode="decimal" [useGrouping]="false">
               </p-inputNumber>
-              <small *ngIf="productForm['countInStock'].invalid && isSubmitted" class="p-error">Name is required</small>
+              <small *ngIf="productForm['countInStock'].invalid && isSubmitted" class="p-error">Count In Stock is required</small>
             </div>
             <div class="field col-4">
               <label for="category">Category</label>
@@ -76,7 +76,7 @@
               </div>
               <textarea formControlName="description" [rows]="5" [cols]="30" pInputTextarea
                 [autoResize]="true"></textarea>
-              <small *ngIf="productForm['description'].invalid && isSubmitted" class="p-error">Price is required</small>
+              <small *ngIf="productForm['description'].invalid && isSubmitted" class="p-error">Description is required</small>
 
             </div>
             <div class="field col-12">
@@ -87,10 +87,15 @@
             </div>
             <div class="field col-12">
               <label for="name">Main Image</label>
-              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+              <input
+                type="file"
+                class="p-inputtext"
+                accept="image/*"
+                (change)="onImageUpload($event)" />
               <div class="p-col-2 mt-2 pl-0">
                 <img style="width: 100px;" [src]="imageDisplay" alt="" >
               </div>
+              <small *ngIf="productForm['image'].invalid && isSubmitted" class="p-error">Image is required</small>
             </div>
           </div>
         </form>
