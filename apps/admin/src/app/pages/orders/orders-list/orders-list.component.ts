@@ -1,24 +1,25 @@
 import { Order, OrdersService } from '@bluebits/orders';
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 
 const ORDER_STATUS = {
-  0 : {
+  0: {
     label: 'Pending',
     color: 'success'
   },
-  1 : {
+  1: {
     label: 'Processed',
     color: 'warning'
   },
-  2 : {
+  2: {
     label: 'Shipped',
     color: 'warning'
   },
-  3 : {
+  3: {
     label: 'Shipped',
     color: 'success'
   },
-  4 : {
+  4: {
     label: 'Cancelled',
     color: 'danger'
   },
@@ -33,7 +34,7 @@ const ORDER_STATUS = {
 export class OrdersListComponent implements OnInit {
   orders: Order[] = [];
   orderStatus = ORDER_STATUS;
-  constructor(private ordersService: OrdersService) {
+  constructor(private ordersService: OrdersService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -47,5 +48,8 @@ export class OrdersListComponent implements OnInit {
   }
 
   deleteOrder(orderId: Order) { }
-  showOrder(orderId: Order) { }
+  
+  showOrder(orderId: Order) {
+    this.router.navigateByUrl(`orders/${orderId}`)
+  }
 }

@@ -22,6 +22,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { EditorModule } from "primeng/editor";
 import { TagModule } from "primeng/tag";
 import { InputMaskModule } from "primeng/inputmask";
+import {FieldsetModule} from 'primeng/fieldset';
 
 import { AppComponent } from "./app.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
@@ -52,7 +53,8 @@ const UX_MODULE = [
   InputMaskModule,
   DropdownModule,
   EditorModule,
-  TagModule
+  TagModule,
+  FieldsetModule
 ];
 const ROUTES: Routes = [
   {
