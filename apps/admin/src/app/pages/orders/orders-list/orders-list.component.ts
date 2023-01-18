@@ -1,29 +1,9 @@
-import { Order, OrdersService } from '@bluebits/orders';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Order, OrdersService } from '@bluebits/orders';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
-const ORDER_STATUS = {
-  0: {
-    label: 'Pending',
-    color: 'success'
-  },
-  1: {
-    label: 'Processed',
-    color: 'warning'
-  },
-  2: {
-    label: 'Shipped',
-    color: 'warning'
-  },
-  3: {
-    label: 'Shipped',
-    color: 'success'
-  },
-  4: {
-    label: 'Cancelled',
-    color: 'danger'
-  },
-}
+import { ORDER_STATUS } from '../order.constants';
 
 
 @Component({
@@ -34,7 +14,12 @@ const ORDER_STATUS = {
 export class OrdersListComponent implements OnInit {
   orders: Order[] = [];
   orderStatus = ORDER_STATUS;
-  constructor(private ordersService: OrdersService, private router: Router) {
+  constructor(
+    private ordersService: OrdersService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private router: Router
+  ) {
 
   }
   ngOnInit(): void {
@@ -47,8 +32,35 @@ export class OrdersListComponent implements OnInit {
     });
   }
 
-  deleteOrder(orderId: Order) { }
-  
+  deleteOrder(orderId: string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+
+      accept: () => {
+        this.ordersService.deleteOrder(orderId)
+          .subscribe(
+            (response) => {
+              this._getOrders();
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Order is deleted!'
+              }),
+                (error: any) => {
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Order is not deleted!'
+                  });
+                }
+            }
+          )
+      },
+    });
+  }
+
   showOrder(orderId: Order) {
     this.router.navigateByUrl(`orders/${orderId}`)
   }
