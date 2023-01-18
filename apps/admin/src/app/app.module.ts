@@ -33,97 +33,109 @@ import { ProductsListComponent } from "./pages/products/products-list/products-l
 import { ProductsFormComponent } from "./pages/products/products-form/products-form.component";
 import { UsersFormComponent } from "./pages/users/users-form/users-form.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
+import { OrdersListComponent } from "./pages/orders/orders-list/orders-list.component";
+import { OrdersDetailComponent } from "./pages/orders/orders-detail/orders-detail.component";
 
 const UX_MODULE = [
-    CardModule,
-    ToolbarModule,
-    ButtonModule,
-    RippleModule,
-    TableModule,
-    InputTextModule,
-    ToastModule,
-    ConfirmDialogModule,
-    ColorPickerModule,
-    InputNumberModule,
-    InputTextareaModule,
-    InputSwitchModule,
-    InputMaskModule,
-    DropdownModule,
-    EditorModule,
-    TagModule
+  CardModule,
+  ToolbarModule,
+  ButtonModule,
+  RippleModule,
+  TableModule,
+  InputTextModule,
+  ToastModule,
+  ConfirmDialogModule,
+  ColorPickerModule,
+  InputNumberModule,
+  InputTextareaModule,
+  InputSwitchModule,
+  InputMaskModule,
+  DropdownModule,
+  EditorModule,
+  TagModule
 ];
 const ROUTES: Routes = [
-    {
-        path: "",
-        component: ShellComponent,
-        children: [
-            {
-                path: "dashboard",
-                component: DashboardComponent
-            },
-            {
-                path: "categories",
-                component: CategoriesListComponent
-            },
-            {
-                path: "categories/form",
-                component: CategoriesFormComponent
-            },
-            {
-                path: "categories/form/:id",
-                component: CategoriesFormComponent
-            },
-            {
-                path: "products",
-                component: ProductsListComponent
-            },
-            {
-                path: "products/form",
-                component: ProductsFormComponent
-            },
-            {
-                path: "products/form/:id",
-                component: ProductsFormComponent
-            },
-            {
-                path: "users",
-                component: UsersListComponent
-            },
-            {
-                path: "users/form",
-                component: UsersFormComponent
-            },
-            {
-                path: "users/form/:id",
-                component: UsersFormComponent
-            }
-        ]
-    }
+  {
+    path: "",
+    component: ShellComponent,
+    children: [
+      {
+        path: "dashboard",
+        component: DashboardComponent
+      },
+      {
+        path: "categories",
+        component: CategoriesListComponent
+      },
+      {
+        path: "categories/form",
+        component: CategoriesFormComponent
+      },
+      {
+        path: "categories/form/:id",
+        component: CategoriesFormComponent
+      },
+      {
+        path: "products",
+        component: ProductsListComponent
+      },
+      {
+        path: "products/form",
+        component: ProductsFormComponent
+      },
+      {
+        path: "products/form/:id",
+        component: ProductsFormComponent
+      },
+      {
+        path: "users",
+        component: UsersListComponent
+      },
+      {
+        path: "users/form",
+        component: UsersFormComponent
+      },
+      {
+        path: "users/form/:id",
+        component: UsersFormComponent
+      },
+      {
+        path: "orders",
+        component: OrdersListComponent
+      },
+      {
+        path: "orders/:id",
+        component: OrdersDetailComponent
+      },
+    ]
+  }
 ];
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        DashboardComponent,
-        ShellComponent,
-        SidebarComponent,
-        CategoriesListComponent,
-        CategoriesFormComponent,
-        ProductsListComponent,
-        ProductsFormComponent,
-        UsersFormComponent,
-        UsersListComponent,
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        ...UX_MODULE,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })
-    ],
-    providers: [CategoriesService, MessageService, ConfirmationService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    ShellComponent,
+    SidebarComponent,
+    CategoriesListComponent,
+    CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent,
+    UsersFormComponent,
+    UsersListComponent,
+    OrdersListComponent,
+    OrdersDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ...UX_MODULE,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" })
+  ],
+  providers: [CategoriesService, MessageService, ConfirmationService],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
