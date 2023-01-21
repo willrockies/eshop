@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@bluebits/users';
 
 @Component({
   selector: "users-login",
@@ -9,16 +11,37 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   isSubmitted = false;
+  authError = false;
+  authMessage = 'Email or Password are wrong'
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
     this._initLoginForm();
   }
 
-  onSubmit(){
+  onSubmit() {
     this.isSubmitted = true;
+    // const loginData = {
+    //   email: this.loginForm['email'].value,
+    //   password: this.loginForm['password'].value
+    // }
+    if (this.loginFormGroup.invalid) return;
+
+    this.auth.login(this.loginForm['email'].value, this.loginForm['password'].value).subscribe((user) => {
+      console.log(user);
+      this.authError = false;
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+      this.authError = true;
+      if (error.status !== 400) {
+        this.authMessage = "Error in the server, please try again later!";
+      }
+
+    })
   }
 
   private _initLoginForm() {
@@ -28,7 +51,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get loginForm(){
+  get loginForm() {
     return this.loginFormGroup.controls;
   }
 }
