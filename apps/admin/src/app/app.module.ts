@@ -1,11 +1,11 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesService } from '@bluebits/products';
-import { AuthGuardService, UsersModule } from '@bluebits/users';
+import { AuthGuardService, JwtInterceptor, UsersModule } from '@bluebits/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -140,7 +140,11 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES, { initialNavigation: "enabledBlocking" }),
     UsersModule
   ],
-  providers: [CategoriesService, MessageService, ConfirmationService],
+  providers: [
+    CategoriesService,
+    MessageService,
+    ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
