@@ -14,7 +14,11 @@ import { LocalstorageService } from './localstorage.service';
 export class AuthService {
   apiURLUsers = environment.apiUrl + 'users';
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private localstorageService: LocalstorageService,
+    private router: Router
+  ) {
 
   }
 
@@ -22,4 +26,8 @@ export class AuthService {
     return this.http.post<User>(`${this.apiURLUsers}/login`, { email, password })
   }
 
+  logout() {
+    this.localstorageService.removeToken();
+    this.router.navigate(['/login']);
+  }
 }
