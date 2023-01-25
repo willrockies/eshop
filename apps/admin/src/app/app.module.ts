@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesService } from '@bluebits/products';
-import { UsersModule } from '@bluebits/users';
+import { AuthGuardService, UsersModule } from '@bluebits/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -61,6 +61,7 @@ const ROUTES: Routes = [
   {
     path: "",
     component: ShellComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: "dashboard",

@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "users-login",
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
-    private localStorageService: LocalstorageService
+    private localStorageService: LocalstorageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm['email'].value, this.loginForm['password'].value).subscribe((user) => {
       this.authError = false;
       this.localStorageService.setToken(user.token);
+      this.router.navigate(['/']);
 
     }, (error: HttpErrorResponse) => {
       console.log(error);
