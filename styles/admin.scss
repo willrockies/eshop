@@ -6,6 +6,7 @@
 
 //Shared
 @import "./apps/admin/shell.scss";
+@import "./apps/admin/dashboard.scss";
 
 //Libraries
 @import "node_modules/primeicons/primeicons.css";
@@ -14,7 +15,7 @@
 @import "/node_modules/primeflex/primeflex.css";
 @import "./base/configuration.scss";
 
-//libs
+//shared
 @import "./libs/ui/ui.scss";
 
 

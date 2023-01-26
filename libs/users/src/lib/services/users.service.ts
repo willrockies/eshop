@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '@bluebits/users';
+import { User } from '../models/user';
 import { environment } from '@env/environment';
-import { Observable } from 'rxjs';
 import * as countriesLib from 'i18n-iso-countries';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 declare const require;
 
@@ -48,6 +49,12 @@ export class UsersService {
 
   getCountry(countryKey: string): string {
     return countriesLib.getName(countryKey, 'pt');
+  }
+
+  getUsersCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLUsers}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.userCount));
   }
 
 }
