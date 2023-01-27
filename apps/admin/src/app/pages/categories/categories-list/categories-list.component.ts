@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: "admin-categories-list",
   templateUrl: "./categories-list.component.html",
 
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
-
+  endSubscription$: Subject<any> = new Subject;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -18,9 +19,13 @@ export class CategoriesListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private router: Router) { }
 
+
   ngOnInit(): void {
-    
     this._getCategories();
+  }
+
+  ngOnDestroy(): void {
+    this.endSubscription$.complete();
   }
 
   deleteCategory(categoryId: string) {
@@ -32,14 +37,14 @@ export class CategoriesListComponent implements OnInit {
       accept: () => {
         this.categoriesService.deleteCategory(categoryId)
           .subscribe(
-            (response) => {
+            () => {
               this._getCategories();
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
                 detail: 'Category is deleted!'
               }),
-                (error: any) => {
+                () => {
                   this.messageService.add({
                     severity: 'error',
                     summary: 'Error',
@@ -57,10 +62,12 @@ export class CategoriesListComponent implements OnInit {
   }
 
   private _getCategories() {
-    this.categoriesService.getCategories().subscribe(cats => {
-      this.categories = cats;
+    this.categoriesService.getCategories()
+      .pipe(takeUntil(this.endSubscription$))
+      .subscribe(cats => {
+        this.categories = cats;
 
-    })
+      })
   }
 
 }

@@ -1,33 +1,41 @@
 import { ProductService } from '@bluebits/products';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order, OrdersService } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
 import { environment } from '@env/environment';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: "admin-dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.scss"]
 })
-export class DashboardComponent implements OnInit {
-  statistics = []
+export class DashboardComponent implements OnInit, OnDestroy {
+  statistics = [];
+  endSubscription$: Subject<any> = new Subject;
 
   constructor(
     private userService: UsersService,
     private productService: ProductService,
     private ordersService: OrdersService) { }
+
   ngOnInit(): void {
     combineLatest([
       this.ordersService.getOrdersCount(),
       this.productService.getProductsCount(),
       this.userService.getUsersCount(),
       this.ordersService.getTotalSales(),
-    ]).subscribe((values) => {
-      this.statistics = values;
-    });
+    ]).pipe(takeUntil(this.endSubscription$))
+      .subscribe((values) => {
+        this.statistics = values;
+      });
   }
+
+  ngOnDestroy(): void {
+    this.endSubscription$.complete();
+  }
+
 
 
 

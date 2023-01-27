@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order, OrdersService } from '@bluebits/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 import { ORDER_STATUS } from '../order.constants';
 
@@ -14,6 +15,7 @@ import { ORDER_STATUS } from '../order.constants';
 export class OrdersListComponent implements OnInit {
   orders: Order[] = [];
   orderStatus = ORDER_STATUS;
+  endSubscription$: Subject<any> = new Subject;
   constructor(
     private ordersService: OrdersService,
     private confirmationService: ConfirmationService,
@@ -26,10 +28,19 @@ export class OrdersListComponent implements OnInit {
     this._getOrders();
   }
 
+
+  ngOnDestroy(): void {
+
+    this.endSubscription$.complete();
+  }
+
+
   _getOrders() {
-    this.ordersService.getOrders().subscribe((orders) => {
-      this.orders = orders;
-    });
+    this.ordersService.getOrders()
+      .pipe(takeUntil(this.endSubscription$))
+      .subscribe((orders) => {
+        this.orders = orders;
+      });
   }
 
   deleteOrder(orderId: string) {

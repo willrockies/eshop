@@ -1,8 +1,9 @@
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { User, UsersService } from '@bluebits/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
   templateUrl: "./users-list.component.html",
   styleUrls: ["./users-list.component.scss"]
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
   users: User[] = [];
+  endSubscription$: Subject<any> = new Subject;
 
   constructor(
     private usersService: UsersService,
@@ -23,6 +25,10 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void {
     this._getUsers();
 
+  }
+
+  ngOnDestroy(): void {
+    this.endSubscription$.complete();
   }
 
   updateUser(userId: User) {
@@ -66,9 +72,11 @@ export class UsersListComponent implements OnInit {
     }
   }
   private _getUsers() {
-    this.usersService.getUsers().subscribe(users => {
-      this.users = users;
-    });
+    this.usersService.getUsers()
+      .pipe(takeUntil(this.endSubscription$))
+      .subscribe(users => {
+        this.users = users;
+      });
   }
 
 
