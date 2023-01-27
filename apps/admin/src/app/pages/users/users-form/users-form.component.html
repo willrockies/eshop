@@ -1,0 +1,117 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editMode ? 'Edit User' : 'Add User'" subheader="List of all users">
+    <div class="grid mb-5">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-rigth">
+            <p-button [label]="editMode ? 'Update' : 'Create'" icon="pi pi-plus" styleClass="p-button-primary mr-4"
+              (click)="onSubmit()"></p-button>
+            <p-button label="Cancel" icon="pi pi-arrow-circle-left" styleClass="p-button-secondary"
+              (click)="onCancel()"></p-button>
+            <!-- <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-warning"></button> -->
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <form [formGroup]="form">
+
+          <div class="p-fluid formgrid grid">
+            <div class="field col-4">
+              <label for="name">Name</label>
+              <input formControlName="name" id="name" type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+              <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error">Name is required</small>
+            </div>
+            <div class="field col-4">
+              <label for="email">Email</label>
+              <input formControlName="email" id="email" type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+              <small *ngIf="userForm['email'].invalid && isSubmitted" class="p-error">
+                <span *ngIf="userForm['email'].errors?.['required']"> email is required </span>
+                <span *ngIf="userForm['email'].errors?.['email']"> email is not valid </span>
+              </small>
+            </div>
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="withoutgrouping">Password</label>
+              </div>
+              <p-inputNumber formControlName="password" mode="decimal" inputId="password" [useGrouping]="false">
+              </p-inputNumber>
+              <small *ngIf="userForm['password'].invalid && isSubmitted" class="p-error">Password is required</small>
+            </div>
+          </div>
+
+          <div class="p-fluid formgrid grid">
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="phone">Phone</label>
+              </div>
+
+              <p-inputMask mask="(99) 99999-9999" formControlName="phone" placeholder="(999) 999-9999"></p-inputMask>
+
+              <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error">Phone is required</small>
+            </div>
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="isAdmin">Is Admin</label>
+              </div>
+              <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+
+            </div>
+          </div>
+          <div class="p-fluid formgrid grid">
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="street">Street</label>
+              </div>
+              <input formControlName="street" id="street" type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+
+            </div>
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="apartment">Apartment</label>
+              </div>
+              <input formControlName="apartment" id="apartment" type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+
+            </div>
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="zip">Zip Code</label>
+              </div>
+              <input formControlName="zip" id="zip" type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+
+            </div>
+
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="city">City</label>
+              </div>
+              <input formControlName="city" id="city" type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+
+            </div>
+            <div class="field col-4">
+              <div class="mb-2">
+                <label for="country">Country</label>
+              </div>
+              <p-dropdown [options]="countries" formControlName="country" optionLabel="name" optionValue="id"
+                [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country">
+              </p-dropdown>
+
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </p-card>
+</div>
