@@ -1,3 +1,4 @@
+import { ProductsModule } from './../../../../libs/products/src/lib/products.module';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
@@ -13,19 +14,19 @@ import { AccordionModule } from "primeng/accordion";
 import { NavComponent } from "./shared/nav/nav.component";
 
 const ROUTES: Routes = [
-    {
-        path: "",
-        component: HomePageComponent
-    },
-    {
-        path: "products",
-        component: ProductListComponent
-    }
+  {
+    path: "",
+    component: HomePageComponent
+  },
+  {
+    path: "products",
+    component: ProductListComponent
+  }
 ];
 @NgModule({
-    declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES), UiModule, AccordionModule],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES), UiModule, AccordionModule, ProductsModule],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
