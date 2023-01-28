@@ -1,8 +1,14 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-    selector: "ui-banner",
-    templateUrl: "./banner.component.html",
-    styleUrls: ["./banner.component.scss"]
+  selector: "ui-banner",
+  templateUrl: "./banner.component.html",
+  styleUrls: ["./banner.component.scss"]
 })
-export class BannerComponent {}
+export class BannerComponent implements OnInit {
+
+  constructor(){}
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
+  }
+}
