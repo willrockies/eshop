@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +26,7 @@ const ROUTES: Routes = [
 ];
 @NgModule({
   declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES), UiModule, AccordionModule, ProductsModule, UiModule],
+  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES), UiModule, AccordionModule, ProductsModule, UiModule],
   providers: [],
   bootstrap: [AppComponent]
 })
