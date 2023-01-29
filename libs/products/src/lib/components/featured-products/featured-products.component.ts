@@ -15,11 +15,15 @@ export class FeaturedProductsComponent implements OnInit, OnDestroy {
   constructor(private prodService: ProductService) {
 
   }
+
   ngOnInit(): void {
     this._getFeaturedProducts()
   }
 
-  ngOnDestroy
+  ngOnDestroy(): void {
+    this.endSubscription$.complete()
+  }
+
 
   private _getFeaturedProducts() {
     this.prodService.getFeaturedProducts(4).pipe(takeUntil(this.endSubscription$)).subscribe(products => {
