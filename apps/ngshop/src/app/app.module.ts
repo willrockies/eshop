@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { OrdersModule } from '@bluebits/orders';
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
 import { AccordionModule } from 'primeng/accordion';
@@ -21,7 +22,7 @@ const ROUTES: Routes = [
 ];
 @NgModule({
   declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES), UiModule, AccordionModule, ProductsModule],
+  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES), UiModule, AccordionModule, ProductsModule, OrdersModule],
   providers: [],
   bootstrap: [AppComponent]
 })
