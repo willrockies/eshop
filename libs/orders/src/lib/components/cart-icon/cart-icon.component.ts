@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CartIconComponent implements OnInit {
 
-  cartCount = 0;
+  cartCount: any = 0;
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {

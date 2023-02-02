@@ -7,6 +7,8 @@ import { UiModule } from '@bluebits/ui';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 import { RatingModule } from 'primeng/rating';
 
 import { CategoriesBannerComponent } from './components/categories-banner/categories-banner.component';
@@ -40,7 +42,9 @@ const ROUTES: Routes = [
     RatingModule,
     InputNumberModule,
     FormsModule,
-    UiModule
+    UiModule,
+    MessageModule,
+    MessagesModule
   ],
   declarations: [
     ProductsSearchComponent,

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class GalleryComponent implements OnInit {
   selectedImageUrl: string;
-  @Input() images: string[];
+  @Input() images: string;
 
   ngOnInit(): void {
     if (this.hasImage) {
