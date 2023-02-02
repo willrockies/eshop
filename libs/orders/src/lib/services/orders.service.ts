@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class OrdersService {
   apiURLOrders = environment.apiUrl + 'orders';
+  apiURLProducts = environment.apiUrl + 'products';
 
   constructor(private http: HttpClient) { }
 
@@ -46,6 +47,10 @@ export class OrdersService {
 
   deleteOrder(orderId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiURLOrders}/${orderId}`)
+  }
+
+  getProduct(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURLProducts}/${productId}`);
   }
 }
 

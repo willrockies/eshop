@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 import { Cart, CartItem } from '../models/cart';
 
 export const CART_KEY = 'cart';
@@ -15,12 +16,11 @@ export class CartService {
   initCartLocalStorage() {
     const cart: Cart = this.getCart();
     if (!cart) {
-      const initialCart = {
+      const intialCart = {
         items: []
-      }
-      const initialCartJson = JSON.stringify(initialCart);
-      localStorage.setItem(CART_KEY, initialCartJson);
-
+      };
+      const intialCartJson = JSON.stringify(intialCart);
+      localStorage.setItem(CART_KEY, intialCartJson);
     }
 
   }
@@ -40,7 +40,7 @@ export class CartService {
       cart.items.map((item) => {
         if (item.productId === cartItem.productId) {
           item.quantity = item.quantity + cartItem.quantity;
-          // return item;
+
         }
       })
     } else {
@@ -51,5 +51,17 @@ export class CartService {
     localStorage.setItem(CART_KEY, cartJson);
     this.cart$.next(cart);
     return cart;
+  }
+
+  deleteCartItem(productId: string) {
+    const cart = this.getCart();
+    const newCart = cart.items.filter((item) => item.productId !== productId);
+
+    cart.items = newCart;
+
+    const cartJsonString = JSON.stringify(cart);
+    localStorage.setItem(CART_KEY, cartJsonString);
+
+    this.cart$.next(cart);
   }
 }

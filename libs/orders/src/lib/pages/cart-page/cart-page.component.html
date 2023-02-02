@@ -5,20 +5,20 @@
         <p-button label="Continue shopping" icon="pi pi-arrow-left" (onClick)="backToShop()"></p-button>
       </div>
       <div>
-        <h4>My Cart: {{2}} Item(s)</h4>
+        <h4>My Cart: {{cartCount}} Item(s)</h4>
       </div>
       <div class="cart-shipping mb-5">
         Shipping after the payment, delivery time : 1 to 4 working days
       </div>
-      <div class="cart-item">
+      <div class="cart-item mb-5" *ngFor="let cartItem of cartItemsDetailed">
         <div class="grid p-fluid">
           <div class="col-2 cart-item-image">
-            <img src="https://micoedward.com/wp-content/uploads/2018/04/Love-your-product.png" alt="">
+            <img [src]="cartItem.product.image" [attr.alt]="cartItem.product.name">
           </div>
           <div class="col-7">
-            <div class="cart-item-name">Product Name</div>
-            <div class="cart-item-price">{{250 | currency}}</div>
-            <div class="cart-item-remove"><p-button icon="pi pi-trash" (onClick)="DeleteCartItem()"></p-button></div>
+            <div class="cart-item-name">{{cartItem.product.name}}</div>
+            <div class="cart-item-price">{{cartItem.product.price| currency}}</div>
+            <div class="cart-item-remove"><p-button icon="pi pi-trash" (onClick)="DeleteCartItem(cartItem)"></p-button></div>
           </div>
 
           <div class="col-3">
@@ -27,7 +27,7 @@
               <p-inputNumber
               mode="decimal"
               [showButtons]="true"
-              inputId="quantity"
+              [inputId]="cartItem.product.id"
               [min]="1"
               [max]="100">
               </p-inputNumber>
@@ -35,7 +35,7 @@
             <div class="cart-item-subtotal">
               Subtotal:
               <span class="cart-item-subtotal-value">
-                {{200 | currency}}
+                {{cartItem.product.price * cartItem.quantity | currency}}
               </span>
             </div>
           </div>
