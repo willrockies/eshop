@@ -83,6 +83,7 @@ const UX_MODULE = [
     ReactiveFormsModule,
     UsersModule,
     AppRoutingModule,
+     
   ],
   providers: [
     CategoriesService,

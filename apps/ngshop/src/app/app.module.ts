@@ -1,3 +1,4 @@
+import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +8,7 @@ import { OrdersModule } from '@bluebits/orders';
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
 import { UsersModule } from '@bluebits/users';
+import { StoreModule, StoreRootModule } from '@ngrx/store';
 import { AccordionModule } from 'primeng/accordion';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
