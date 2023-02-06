@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesService } from '@bluebits/products';
 import { JwtInterceptor, UsersModule } from '@bluebits/users';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -81,9 +83,11 @@ const UX_MODULE = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     UsersModule,
     AppRoutingModule,
-     
+
   ],
   providers: [
     CategoriesService,

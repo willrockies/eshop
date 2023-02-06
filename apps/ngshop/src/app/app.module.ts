@@ -33,13 +33,15 @@ const ROUTES: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     UiModule,
     AccordionModule,
     ToastModule,
     ProductsModule,
     OrdersModule,
     UsersModule,
-    ],
+  ],
   providers: [MessageService],
   bootstrap: [AppComponent]
 })
