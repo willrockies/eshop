@@ -144,7 +144,7 @@ export class UsersFormComponent implements OnInit {
       name: this.userForm['name'].value,
       email: this.userForm['email'].value,
       password: this.userForm['password'].value,
-      phone: this.userForm['name'].value,
+      phone: this.userForm['phone'].value,
       isAdmin: this.userForm['isAdmin'].value,
       street: this.userForm['street'].value,
       apartment: this.userForm['apartment'].value,

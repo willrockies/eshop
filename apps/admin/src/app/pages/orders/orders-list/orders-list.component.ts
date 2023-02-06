@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order, OrdersService } from '@bluebits/orders';
+import { Order, OrdersService, ORDER_STATUS } from '@bluebits/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
-
-import { ORDER_STATUS } from '../order.constants';
-
 
 @Component({
   selector: "admin-orders-list",
@@ -15,7 +12,7 @@ import { ORDER_STATUS } from '../order.constants';
 export class OrdersListComponent implements OnInit {
   orders: Order[] = [];
   orderStatus = ORDER_STATUS;
-  endSubscription$: Subject<any> = new Subject;
+  endSubscription$: Subject<any> = new Subject();
   constructor(
     private ordersService: OrdersService,
     private confirmationService: ConfirmationService,

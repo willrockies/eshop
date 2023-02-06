@@ -1,8 +1,8 @@
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
-import { Order, OrdersService } from "@bluebits/orders";
-import { ORDER_STATUS } from '../order.constants';
+import { Order, OrdersService, ORDER_STATUS } from "@bluebits/orders";
+
 @Component({
   selector: "admin-orders-detail",
   templateUrl: "./orders-detail.component.html",

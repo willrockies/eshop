@@ -46,7 +46,7 @@ export class CartPageComponent implements OnInit, OnDestroy {
   }
 
   backToShop() {
-    this.router.navigate(['/products'])
+    this.router.navigate(['/products']);
   }
 
   DeleteCartItem(cartItem: CartItemDetailed) {

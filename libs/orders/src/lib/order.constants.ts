@@ -1,7 +1,7 @@
 export const ORDER_STATUS = {
   0: {
     label: 'Pending',
-    color: 'success'
+    color: 'primary'
   },
   1: {
     label: 'Processed',
