@@ -20,4 +20,21 @@ export class LocalstorageService {
   removeToken() {
     localStorage.removeItem(TOKEN)
   }
+
+  isValidToken() {
+    const token = this.getToken();
+
+    if (token) {
+      const tokenDecode = JSON.parse(atob(token.split('.')[1]));
+
+      return !this._tokenExpired(tokenDecode.exp);
+
+    }else {
+      return false;
+    }
+  }
+
+  private _tokenExpired(expiration): boolean {
+    return Math.floor(new Date().getDate() / 1000) >= expiration;
+  }
 }
