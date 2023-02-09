@@ -1,15 +1,13 @@
-import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 
-import { User } from '../models/user';
 import * as UsersActions from './users.actions';
-import { UsersEntity } from './users.models';
+import { User } from '../models/user';
 
-export const USERS_FEATURE_KEY = "users";
+export const USERS_FEATURE_KEY = 'users';
 
 export interface UsersState {
-  user: User,
-  isAuthenticated: boolean
+  user: User;
+  isAuthenticated: boolean;
 }
 
 export interface UsersPartialState {
@@ -19,7 +17,7 @@ export interface UsersPartialState {
 export const initialUsersState: UsersState = {
   user: null,
   isAuthenticated: false
-}
+};
 
 const usersReducer = createReducer(
   initialUsersState,
@@ -29,12 +27,11 @@ const usersReducer = createReducer(
     user: action.user,
     isAuthenticated: true
   })),
-  on(UsersActions.buildUserSessionFailed, (state, action) => ({
+  on(UsersActions.buildUserSessionFailed, (state) => ({
     ...state,
     user: null,
     isAuthenticated: false
-  })),
-
+  }))
 );
 
 export function reducer(state: UsersState | undefined, action: Action) {

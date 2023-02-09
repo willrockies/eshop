@@ -1,5 +1,5 @@
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OrdersModule } from '@bluebits/orders';
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
-import { UsersModule } from '@bluebits/users';
+import { JwtInterceptor, UsersModule } from '@bluebits/users';
 import { StoreModule, StoreRootModule } from '@ngrx/store';
 import { AccordionModule } from 'primeng/accordion';
 import { MessageService } from 'primeng/api';
@@ -42,7 +42,10 @@ const ROUTES: Routes = [
     OrdersModule,
     UsersModule,
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
