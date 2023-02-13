@@ -7,6 +7,7 @@ import { CategoriesService } from '@bluebits/products';
 import { JwtInterceptor, UsersModule } from '@bluebits/users';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { NgxStripeModule } from 'ngx-stripe';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -85,6 +86,7 @@ const UX_MODULE = [
     ReactiveFormsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    NgxStripeModule.forRoot('pk_test_51MZl2fDjDn78nwlPZz4mt2uBys63DDGxJaQgzKbKBSjQE6vgW7nQ8ZWmISx7IszuhFGM3BFmm0csOKVrM15NuGTx00dsWhn0ty'),
     UsersModule,
     AppRoutingModule,
 

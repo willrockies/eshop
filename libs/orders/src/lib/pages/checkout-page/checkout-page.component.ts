@@ -4,15 +4,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '@bluebits/users';
 import * as countriesLib from 'i18n-iso-countries';
+import { StripeService } from 'ngx-stripe';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 
 import { Cart } from '../../models/cart';
 import { Order } from '../../models/order';
 import { OrderItem } from '../../models/order-item';
+import { ORDER_STATUS } from '../../order.constants';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
-import { ORDER_STATUS } from './../../order.constants';
 
 
 declare const require;
@@ -38,7 +39,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private location: Location,
     private route: ActivatedRoute,
     private cartService: CartService,
-    private orderService: OrdersService) { }
+    private orderService: OrdersService,
+    private stripeService: StripeService) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -108,6 +110,13 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
   placeOrder() {
     this.isSubmitted = true;
     if (this.checkoutFormGroup.invalid) return;
+
+    this.orderService.createCheckoutSession(this.orderItems).subscribe(error => {
+      if (error) {
+        console.log('error in redirect to payment');
+      }
+
+    });
 
     const order: Order = {
       orderItems: this.orderItems,

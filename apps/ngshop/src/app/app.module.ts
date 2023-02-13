@@ -1,5 +1,4 @@
-import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,7 +7,9 @@ import { OrdersModule } from '@bluebits/orders';
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
 import { JwtInterceptor, UsersModule } from '@bluebits/users';
-import { StoreModule, StoreRootModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { NgxStripeModule } from 'ngx-stripe';
 import { AccordionModule } from 'primeng/accordion';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -35,6 +36,7 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    NgxStripeModule.forRoot('pk_test_51MZl2fDjDn78nwlPZz4mt2uBys63DDGxJaQgzKbKBSjQE6vgW7nQ8ZWmISx7IszuhFGM3BFmm0csOKVrM15NuGTx00dsWhn0ty'),
     UiModule,
     AccordionModule,
     ToastModule,
