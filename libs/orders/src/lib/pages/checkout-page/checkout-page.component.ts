@@ -111,12 +111,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     this.isSubmitted = true;
     if (this.checkoutFormGroup.invalid) return;
 
-    this.orderService.createCheckoutSession(this.orderItems).subscribe(error => {
-      if (error) {
-        console.log('error in redirect to payment');
-      }
 
-    });
 
     const order: Order = {
       orderItems: this.orderItems,
@@ -130,16 +125,15 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       user: this.usersId,
       dateOrdered: `${Date.now()}`
 
-    }
+    };
+    this.orderService.cacheOrderData(order);
 
-    this.orderService.createOrder(order).subscribe(
-      () => {
-        this.cartService.emptyCart();
-        this.router.navigate(['/success']);
-      }, (error) => {
-        //display some errors messages
-        console.log(error);
-      });
+    this.orderService.createCheckoutSession(this.orderItems).subscribe(error => {
+      if (error) {
+        console.log('error in redirect to payment');
+      }
+
+    });
 
   }
   onCancel() {
