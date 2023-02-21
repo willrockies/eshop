@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
 import { environment } from '@env/environment';
 import * as countriesLib from 'i18n-iso-countries';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { User } from '../models/user';
+import { UsersFacade } from '../state/users.facade';
 
 declare const require;
 
@@ -15,7 +17,7 @@ declare const require;
 export class UsersService {
   apiURLUsers = environment.apiUrl + 'users';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private usersFacade: UsersFacade) {
     countriesLib.registerLocale(require('i18n-iso-countries/langs/pt.json'));
   }
 
@@ -55,6 +57,18 @@ export class UsersService {
     return this.http
       .get<number>(`${this.apiURLUsers}/get/count`)
       .pipe(map((objectValue: any) => objectValue.userCount));
+  }
+
+  initAppSession() {
+    this.usersFacade.buildUserSession();
+  }
+
+  observeCurrentUser() {
+    return this.usersFacade.currentUser$;
+  }
+
+  isCurrentUserAuth() {
+    return this.usersFacade.isAuthenticated$;
   }
 
 }
