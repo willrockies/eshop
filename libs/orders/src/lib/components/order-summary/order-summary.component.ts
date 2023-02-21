@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { CartService, OrdersService } from "@bluebits/orders";
+import { CartService } from '../../services/cart.service';
+import { OrdersService } from '../../services/orders.service';
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators"
 @Component({
