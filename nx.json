@@ -37,6 +37,9 @@
         },
         "lint": {
             "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+        },
+        "ng": {
+            "cache": true
         }
     },
     "projects": {
@@ -90,5 +93,6 @@
         "@nrwl/angular:component": {
             "style": "scss"
         }
-    }
+    },
+    "nxCloudAccessToken": "YzM2MjFmZGYtY2U3OS00M2Y4LWEwZWEtOWI2ZWEwOWVlNDgxfHJlYWQtd3JpdGU="
 }
