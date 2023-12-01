@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://eshop-backend-app.herokuapp.com/api/v1/'
+    apiUrl: 'https://eshop-backend-gjvo.onrender.com/api/v1/'
 };
