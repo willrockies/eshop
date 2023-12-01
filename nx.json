@@ -90,5 +90,6 @@
         "@nrwl/angular:component": {
             "style": "scss"
         }
-    }
+    },
+    "nxCloudAccessToken": "OTA5MzU2MjAtMzU2Ni00M2QzLTgxYjYtYzE2YmE3MmFhNDRkfHJlYWQtd3JpdGU="
 }
